@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="812.525" Width="1212.375" Loaded="Window_Loaded">
+    <Grid Margin="0,0,2,-2">
+        <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="Auto">
+            <MenuItem x:Name="mnu_File" Header="File" Height="21" Width="94">
+                <MenuItem Header="Open" Click="cmd_OpenImageFile" />
+                <MenuItem Header="Save" Click="cmd_SaveFile"/>
+                <MenuItem Header="Open Project" Click="cmd_OpenProject"/>
+                <MenuItem Header="Exit" Click="cmd_Exit"/>
+            </MenuItem>
+            <MenuItem x:Name="mnu_Tools" Header="_Tools" Height="21" Width="Auto">
+                <MenuItem x:Name="TogglePolyEdges" Header="_Toggle Polygon Edges" HorizontalAlignment="Left" Width="Auto" Click="cmd_ToggleBorders"/>
+                <MenuItem x:Name="ClearAll" Header="Clear Artifacts" HorizontalAlignment="Left" Width="Auto" Click="cmb_ClearAll"/>
+                <MenuItem x:Name="GMode" Header="_Game Mode" HorizontalAlignment="Left" Width="Auto" Click="cmd_GMode"/>
+                <MenuItem x:Name="ForceBorders" Header="Show All Borders" HorizontalAlignment="Left" Width="Auto" Click="cmd_ForceBorders"/>
+            </MenuItem>
+            <Button x:Name="ErasePolygon" Click="ErasePolygon_Click">Erase</Button>
+        </Menu>
+        <Border Name="brd_Main" 
+          BorderThickness="2"
+          BorderBrush="#FF000000"
+          VerticalAlignment="Top"
+          HorizontalAlignment="Left"
+          Margin="50,50,0,0"
+          Height="650" 
+          Width="1169" RenderTransformOrigin="0.5,0.516">
+            <Grid x:Name="MainGrid" MouseMove="grid_Main_MouseMove" >
+                
+                <Image x:Name="Overlay" Source="/Images/Filler.png" Stretch="Fill"/>
+                <Canvas x:Name="Cnv"  MouseDown="Clicked_grid_Main" Background="Transparent"
+                            MouseLeftButtonDown="CanvasMouseLeftButtonDown"
+                            MouseLeftButtonUp="CanvasMouseLeftButtonUp"
+                            MouseMove="CanvasMouseMove">
+                    
+                </Canvas>
+            </Grid>
+        </Border>
+        <Label Content="Mouse Pos:" HorizontalAlignment="Left" Margin="23,708,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.529,-0.231"/>
+        <Label x:Name="lbl_MousePos" Content="Label" HorizontalAlignment="Left" Margin="110,708,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_ForceBorders" Content="Forcing Border Display" HorizontalAlignment="Left" Margin="66,69,0,0" VerticalAlignment="Top" Width="Auto" Visibility="Hidden"/>
+        <RadioButton x:Name="rdb_Uniform" Content="Uniform" HorizontalAlignment="Left" Margin="348,714,0,0" VerticalAlignment="Top" Checked="cmd_StretchChanged"/>
+        <RadioButton x:Name="rdb_Fill" Content="Fill" HorizontalAlignment="Left" Margin="443,714,0,0" VerticalAlignment="Top" Checked="cmd_StretchChanged"/>
+        <RadioButton x:Name="rdb_None" Content="None" HorizontalAlignment="Left" Margin="621,714,0,0" VerticalAlignment="Top" Checked="cmd_StretchChanged"/>
+        <Label Content="Stretch mode:" HorizontalAlignment="Left" Margin="264,708,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.026,-0.077"/>
+        <RadioButton x:Name="rdb_UniformFill" Content="UniformFill" HorizontalAlignment="Left" Margin="504,714,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="positionFlag" HorizontalAlignment="Left" Height="35" Margin="15,50,0,0" VerticalAlignment="Top" Width="100" Source="Images/FlagIconTrans.png   "/>
+    </Grid>
+</Window>
